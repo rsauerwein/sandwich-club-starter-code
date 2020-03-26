@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -19,8 +20,6 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
-        ImageView ingredientsIv = findViewById(R.id.image_iv);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -43,12 +42,7 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
-        Picasso.with(this)
-                .load(sandwich.getImage())
-                .into(ingredientsIv);
-
-        setTitle(sandwich.getMainName());
+        populateUI(sandwich);
     }
 
     private void closeOnError() {
@@ -56,7 +50,44 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private void populateUI(Sandwich sandwich) {
+        // Get all relevant views
+        TextView alsoKnownAsTextview;
+        TextView descriptionTextView;
+        TextView placeOfOriginTextView;
+        TextView ingredientsTextView;
+        ImageView ingredientsIv;
 
+        alsoKnownAsTextview = findViewById(R.id.also_known_tv);
+        descriptionTextView = findViewById(R.id.description_tv);
+        placeOfOriginTextView = findViewById(R.id.origin_tv);
+        ingredientsTextView = findViewById(R.id.ingredients_tv);
+        ingredientsIv = findViewById(R.id.image_iv);
+        ;
+
+        // Load Image
+        Picasso.with(this)
+                .load(sandwich.getImage())
+                .into(ingredientsIv);
+
+        // Add name
+        setTitle(sandwich.getMainName());
+
+        // Add description
+        descriptionTextView.append(sandwich.getDescription());
+
+        // Add place of origin
+        placeOfOriginTextView.setText(sandwich.getPlaceOfOrigin());
+
+        // Add also known as
+        // Todo refactor duplicate code
+        for (String name : sandwich.getAlsoKnownAs()) {
+            alsoKnownAsTextview.append(name + "\n");
+        }
+
+        // Add ingredients
+        for (String ingredient : sandwich.getIngredients()) {
+            ingredientsTextView.append(ingredient + "\n");
+        }
     }
 }
