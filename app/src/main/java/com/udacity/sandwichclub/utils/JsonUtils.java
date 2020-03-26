@@ -62,11 +62,7 @@ public class JsonUtils {
 
             // Retrieve aliases
             JSONArray aliases = nameObject.getJSONArray(JSON_ALSO_KNOWN_AS);
-
-            alsoKnownAs = new ArrayList<String>();
-            for (int i = 0; i < aliases.length(); i++) {
-                alsoKnownAs.add(aliases.getString(i));
-            }
+            alsoKnownAs = parseJsonArray(aliases);
 
             // Retrieve place of origin
             placeOfOrigin = sandwichJson.getString(JSON_PLACE_OF_ORIGIN);
@@ -78,13 +74,8 @@ public class JsonUtils {
             image = sandwichJson.getString(JSON_IMAGE);
 
             // Retrieve ingredients
-            // TODO Refactor duplicate code
-
             JSONArray arrayIngredients = sandwichJson.getJSONArray(JSON_INGREDIENTS);
-            ingredients = new ArrayList<String>();
-            for (int i = 0; i < arrayIngredients.length(); i++) {
-                ingredients.add(arrayIngredients.getString(i));
-            }
+            ingredients = parseJsonArray(arrayIngredients);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -93,5 +84,22 @@ public class JsonUtils {
 
         sandwich = new Sandwich(mainName, alsoKnownAs, placeOfOrigin, description, image, ingredients);
         return sandwich;
+    }
+
+    /**
+     * Helper method for parseSandwichJson which parses child notes with lists inside
+     *
+     * @param data JSONArray with data
+     * @return Returns the elements from data in a String List
+     * @throws JSONException
+     */
+    private static ArrayList<String> parseJsonArray(JSONArray data) throws JSONException {
+        ArrayList<String> result = new ArrayList<String>();
+
+        for (int i = 0; i < data.length(); i++) {
+            result.add(data.getString(i));
+        }
+
+        return result;
     }
 }
