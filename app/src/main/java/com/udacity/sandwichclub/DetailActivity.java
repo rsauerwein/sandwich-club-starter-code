@@ -11,6 +11,10 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -50,6 +54,9 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * @param sandwich
+     */
     private void populateUI(Sandwich sandwich) {
         // Get all relevant views
         TextView alsoKnownAsTextview;
@@ -80,14 +87,30 @@ public class DetailActivity extends AppCompatActivity {
         placeOfOriginTextView.setText(sandwich.getPlaceOfOrigin());
 
         // Add also known as
-        // Todo refactor duplicate code
-        for (String name : sandwich.getAlsoKnownAs()) {
-            alsoKnownAsTextview.append(name + "\n");
-        }
+        alsoKnownAsTextview.setText(generateList(sandwich.getAlsoKnownAs()));
 
         // Add ingredients
-        for (String ingredient : sandwich.getIngredients()) {
-            ingredientsTextView.append(ingredient + "\n");
+        ingredientsTextView.setText(generateList(sandwich.getIngredients()));
+    }
+
+    /**
+     * Helper method which generates TextView data
+     *
+     * @param data
+     * @return A string with all list elements from data separated by \n
+     */
+    private String generateList(List<String> data) {
+        Iterator i = data.iterator();
+        StringBuilder viewData = new StringBuilder("");
+
+        while (i.hasNext()) {
+            viewData.append(i.next());
+
+            if (i.hasNext()) {
+                viewData.append("\n");
+            }
         }
+
+        return viewData.toString();
     }
 }
