@@ -63,19 +63,18 @@ public class DetailActivity extends AppCompatActivity {
         TextView descriptionTextView;
         TextView placeOfOriginTextView;
         TextView ingredientsTextView;
-        ImageView ingredientsIv;
+        ImageView ingredientsImageView;
 
         alsoKnownAsTextview = findViewById(R.id.also_known_tv);
         descriptionTextView = findViewById(R.id.description_tv);
         placeOfOriginTextView = findViewById(R.id.origin_tv);
         ingredientsTextView = findViewById(R.id.ingredients_tv);
-        ingredientsIv = findViewById(R.id.image_iv);
-        ;
+        ingredientsImageView = findViewById(R.id.image_iv);
 
         // Load Image
         Picasso.with(this)
                 .load(sandwich.getImage())
-                .into(ingredientsIv);
+                .into(ingredientsImageView);
 
         // Add name
         setTitle(sandwich.getMainName());
