@@ -12,6 +12,7 @@
 
     <!-- Error messages-->
     <string name="detail_error_message">Sandwich data not available</string>
+    <string name="missing_alsoKnownNotice">So far the Sandwich Club doesn\'t know about any Nicknames.\nFeel free to submit us suggestions ;)</string>
 
     <string-array name="sandwich_names">
         <item>Ham and cheese sandwich</item>

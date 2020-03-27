@@ -11,7 +11,6 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -87,6 +86,10 @@ public class DetailActivity extends AppCompatActivity {
         placeOfOriginTextView.setText(sandwich.getPlaceOfOrigin());
 
         // Add also known as
+        List<String> alsoKnownAs = sandwich.getAlsoKnownAs();
+        if (alsoKnownAs.isEmpty()) {
+            alsoKnownAs.add(getString(R.string.missing_alsoKnownNotice));
+        }
         alsoKnownAsTextview.setText(generateList(sandwich.getAlsoKnownAs()));
 
         // Add ingredients
