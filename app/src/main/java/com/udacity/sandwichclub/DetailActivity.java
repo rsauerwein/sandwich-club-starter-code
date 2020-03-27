@@ -83,14 +83,21 @@ public class DetailActivity extends AppCompatActivity {
         descriptionTextView.append(sandwich.getDescription());
 
         // Add place of origin
-        placeOfOriginTextView.setText(sandwich.getPlaceOfOrigin());
+        String placeOfOrigin;
+        placeOfOrigin = sandwich.getPlaceOfOrigin();
+        if (placeOfOrigin.isEmpty()) {
+            placeOfOriginTextView.append(getString(R.string.missing_placeOfOrigin));
+        } else {
+            placeOfOriginTextView.setText(sandwich.getPlaceOfOrigin());
+        }
 
         // Add also known as
         List<String> alsoKnownAs = sandwich.getAlsoKnownAs();
         if (alsoKnownAs.isEmpty()) {
-            alsoKnownAs.add(getString(R.string.missing_alsoKnownNotice));
+            alsoKnownAsTextview.setText(getString(R.string.missing_alsoKnownNotice));
+        } else {
+            alsoKnownAsTextview.setText(generateList(sandwich.getAlsoKnownAs()));
         }
-        alsoKnownAsTextview.setText(generateList(sandwich.getAlsoKnownAs()));
 
         // Add ingredients
         ingredientsTextView.setText(generateList(sandwich.getIngredients()));
