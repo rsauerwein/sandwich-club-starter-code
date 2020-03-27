@@ -59,13 +59,13 @@ public class DetailActivity extends AppCompatActivity {
      */
     private void populateUI(Sandwich sandwich) {
         // Get all relevant views
-        TextView alsoKnownAsTextview;
+        TextView alsoKnownAsTextView;
         TextView descriptionTextView;
         TextView placeOfOriginTextView;
         TextView ingredientsTextView;
         ImageView ingredientsImageView;
 
-        alsoKnownAsTextview = findViewById(R.id.also_known_tv);
+        alsoKnownAsTextView = findViewById(R.id.also_known_tv);
         descriptionTextView = findViewById(R.id.description_tv);
         placeOfOriginTextView = findViewById(R.id.origin_tv);
         ingredientsTextView = findViewById(R.id.ingredients_tv);
@@ -94,9 +94,9 @@ public class DetailActivity extends AppCompatActivity {
         // Add also known as
         List<String> alsoKnownAs = sandwich.getAlsoKnownAs();
         if (alsoKnownAs.isEmpty()) {
-            alsoKnownAsTextview.setText(getString(R.string.missing_alsoKnownNotice));
+            alsoKnownAsTextView.setText(getString(R.string.missing_alsoKnownNotice));
         } else {
-            alsoKnownAsTextview.setText(generateList(sandwich.getAlsoKnownAs()));
+            alsoKnownAsTextView.setText(generateList(sandwich.getAlsoKnownAs()));
         }
 
         // Add ingredients
