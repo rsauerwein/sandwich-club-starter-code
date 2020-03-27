@@ -55,6 +55,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     /**
+     * Adds all Sandwich information to the view
      * @param sandwich
      */
     private void populateUI(Sandwich sandwich) {
