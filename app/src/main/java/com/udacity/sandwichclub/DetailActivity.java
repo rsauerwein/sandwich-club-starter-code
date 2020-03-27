@@ -86,7 +86,7 @@ public class DetailActivity extends AppCompatActivity {
         String placeOfOrigin;
         placeOfOrigin = sandwich.getPlaceOfOrigin();
         if (placeOfOrigin.isEmpty()) {
-            placeOfOriginTextView.append(getString(R.string.missing_placeOfOrigin));
+            placeOfOriginTextView.append(getString(R.string.missing_place_of_origin_message));
         } else {
             placeOfOriginTextView.setText(sandwich.getPlaceOfOrigin());
         }
@@ -94,7 +94,7 @@ public class DetailActivity extends AppCompatActivity {
         // Add also known as
         List<String> alsoKnownAs = sandwich.getAlsoKnownAs();
         if (alsoKnownAs.isEmpty()) {
-            alsoKnownAsTextView.setText(getString(R.string.missing_alsoKnownNotice));
+            alsoKnownAsTextView.setText(getString(R.string.missing_also_known_message));
         } else {
             alsoKnownAsTextView.setText(generateList(sandwich.getAlsoKnownAs()));
         }

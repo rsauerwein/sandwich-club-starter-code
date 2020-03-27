@@ -12,8 +12,8 @@
 
     <!-- Error messages-->
     <string name="detail_error_message">Sandwich data not available</string>
-    <string name="missing_alsoKnownNotice">So far the Sandwich Club doesn\'t know about any Nicknames.</string>
-    <string name="missing_placeOfOrigin">So far the Sandwich Club doesn\'t know about if there is a a place of origin.</string>
+    <string name="missing_also_known_message">So far the Sandwich Club doesn\'t know about any Nicknames.</string>
+    <string name="missing_place_of_origin_message">So far the Sandwich Club doesn\'t know about if there is a a place of origin.</string>
 
     <string-array name="sandwich_names">
         <item>Ham and cheese sandwich</item>
